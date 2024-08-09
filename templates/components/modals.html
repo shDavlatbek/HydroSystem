@@ -1,0 +1,148 @@
+{% if modal == 'hydrogeological' %}
+<div class="modal fade" id="hydrogeologicalPasportModal" tabindex="-1" aria-labelledby="hydrogeologicalPasportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Jadval</h1> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered well">
+          <thead>
+            <tr>
+              <th scope="col">Tashkilot</th>
+              <th scope="col">Stansiya</th>
+              <th scope="col">Qudug' Raqami</th>
+              <th scope="col">Qudug' Turi</th>
+              <th scope="col">Viloyat</th>
+              <th scope="col">Tuman</th>
+              <th scope="col" style="width: 15%">Mo'ljal</th>
+              <th scope="col">Joylashuv o'rni</th>
+              <th scope="col">To'ldirilgan sanasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered coordinate mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Qudug' raqami</th>
+              <th scope="col" colspan="3" class="text-center">Shimoliy kenglik ( ° ' " )</th>
+              <th scope="col" colspan="3" class="text-center">Sharqiy uzunlik ( ° ' " )</th>
+              <th scope="col">x</th>
+              <th scope="col">y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if modal == 'hydromelioratical' %}
+<div class="modal fade" id="hydromelioraticalPasportModal" tabindex="-1" aria-labelledby="hydromelioraticalPasportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Jadval</h1> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered well">
+          <thead>
+            <tr>
+              <th scope="col">Tashkilot</th>
+              <th scope="col">Ekspeditsiya</th>
+              <th scope="col">Qudug' Raqami</th>
+              <th scope="col">Qudug' Turi</th>
+              <th scope="col">Viloyat</th>
+              <th scope="col">Tuman</th>
+              <th scope="col" style="width: 15%">Mo'ljal</th>
+              <th scope="col">Joylashuv o'rni</th>
+              <th scope="col">To'ldirilgan sanasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered coordinate mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Qudug' raqami</th>
+              <th scope="col" colspan="3" class="text-center">Shimoliy kenglik ( ° ' " )</th>
+              <th scope="col" colspan="3" class="text-center">Sharqiy uzunlik ( ° ' " )</th>
+              <th scope="col">x</th>
+              <th scope="col">y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if modal == 'fullscreenmodal' %}
+<div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalBody">
+              <!-- Table content will be inserted here -->
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+          </div>
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% if modal == 'imagedownloadmodal' %}
+<div class="modal fade" id="blobImageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="blobImageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto" id="modalBody">
+              <!-- Table content will be inserted here -->
+            <div class="d-flex align-items-center ">
+              <img
+                src=""
+                style='max-height:50vh'
+                class="mx-auto"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+              <a href='' class="btn btn-primary me-auto">Yuklash</a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+          </div>
+      </div>
+  </div>
+</div>
+{% endif %}

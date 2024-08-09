@@ -1,0 +1,140 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link {% if aside != "main-home" %}collapsed{% endif %}" href="{% url "home" %}">
+        <i class="bi bi-grid"></i>
+        <span>Bosh sahifa</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-heading mt-4">Yangi ma'lumot kiritish</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydrogeological-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidrogeologik</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydrogeological-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydrogeological:pasport" %}">
+            <i class="bi bi-circle"></i><span>Kuzatuv-burg'u qudug'i pasporti</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydrogeological:water-level" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari sathi rejimi</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydrogeological:water-chemic" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari kimyoviy tarkibi</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydromelioratical-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidromeliorativ</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydromelioratical-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydromelioratical:pasport" %}">
+            <i class="bi bi-circle"></i><span>Gidromeliorativ ob'ekt pasporti</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydromelioratical:water-level" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari sathi rejimi</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydromelioratical:water-chemic" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari kimyoviy tarkibi</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydrometeorological-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidrometeorologik</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydrometeorological-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydrometeorological:hydrometria" %}">
+            <i class="bi bi-circle"></i><span>Gidrometriya</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydrometeorological:meteorology" %}">
+            <i class="bi bi-circle"></i><span>Meteorologiya</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+
+    <li class="nav-heading mt-5">Mavjud ma'lumotlar ombori</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydrogeological-show-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidrogeologik</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydrogeological-show-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydrogeological:pasport-show" %}">
+            <i class="bi bi-circle"></i><span>Kuzatuv-burg'u qudug'i pasporti</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydrogeological:water-level-show" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari sathi rejimi</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydromelioratical-show-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidromeliorativ</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydromelioratical-show-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydromelioratical:pasport-show" %}">
+            <i class="bi bi-circle"></i><span>Gidromeliorativ ob'ekt pasporti</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydromelioratical:water-level-show" %}">
+            <i class="bi bi-circle"></i><span>Yerosti suvlari sathi rejimi</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav -->
+
+    {% comment %} <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#hydrometeorological-show-nav" data-bs-toggle="collapse" href="#">
+        <span>Gidrometeorologik</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="hydrometeorological-show-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url "hydrometeorological:hydrometria" %}">
+            <i class="bi bi-circle"></i><span>Gidrometriya</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url "hydrometeorological:meteorology" %}">
+            <i class="bi bi-circle"></i><span>Meteorologiya</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Components Nav --> {% endcomment %}
+
+
+
+  </ul>
+
+</aside><!-- End Sidebar-->

@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% load static %} 
+
+{% block styles %}
+<link href="{% static 'app/assets/css/main.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+
+{% block content %}
+
+{% include "components/loading_modal.html" %}
+
+<div class="container-fluid h-100vh">
+    <header class="row shadow-sm" id='header'>
+        
+    </header>
+    <section class="row" id='content'>
+        
+    </section>
+    <footer class="row" id='footer'>
+        <div class="col-12 col-lg-4 px-5 py-3 d-flex align-items-center">
+            <label type="button" class="btn btn-outline-primary px-5 shadow-sm fs-4" for='excel_file'>Импорт</label>
+            <input type="file" name="excel_file" id="excel_file" hidden>
+        </div>
+    </footer>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<link href="https://cdn.datatables.net/v/bs5/dt-2.0.8/datatables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/v/bs5/dt-2.0.8/datatables.min.js"></script>
+<script src="{% static 'app/assets/js/hydra.js' %}"></script>
+{% endblock scripts %}

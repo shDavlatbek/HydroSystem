@@ -1,0 +1,230 @@
+{% extends "base.html" %} {% load static %} {% block title %}Kuzatuv-burg'u qudug'i pasporti{% endblock %} {% block styles %}
+<style>
+  .blue {
+    color: #012970;
+  }
+</style>
+{% endblock styles %} {% block content %} 
+
+<main>
+  <section class="container-fluid">
+    <div class="card col-12 rounded-4">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row my-3 text-center blue"><h1>Kuzatuv-burg'u qudug'i pasporti</h1></div>
+          <div class="row">
+
+            <!-- Section -->
+            <section class="col-lg-6 col-12 px-4">
+
+              <div class="row mb-3">
+                <label for="{{ form.organization.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Qaysi davlat tashkilotiga mansubligi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.organization  }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="country" class="col-sm-6 col-form-label col-form-label-lg">Qaysi viloyatda joylashganligi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  <select class="form-control region_select single-selection" id="country">
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.station.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Qaysi stansiya</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.station }}
+                </div>
+              </div>
+
+            </section><!-- End Section -->
+
+            <!-- Section -->
+            <section class="col-lg-6 col-12 px-4">
+
+              <div class="row mb-3">
+                <label for="{{ form.well_number.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv qudug'i raqami</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.well_number }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.type.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv burg'u qudug'ining turi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.type }}
+                </div>
+              </div>
+
+            </section><!-- End Section -->
+
+          </div>
+
+          <div class="row my-3 text-center blue"><h1>Ma'muriy joylashuvi</h1></div>
+          <div class="row">
+
+            <!-- Section -->
+            <section class="col-lg-6 col-12 px-4">
+
+              <div class="row mb-3">
+                <label for="{{ form.organization.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Viloyat nomi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.region  }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="country" class="col-sm-6 col-form-label col-form-label-lg">Tuman nomi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.district }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.address.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Mo'ljal</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.address }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.address.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Joylashuv o'rni</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.location }}
+                </div>
+              </div>
+
+            </section><!-- End Section -->
+
+            <!-- Section -->
+            <section class="col-xxl-6 col-12 px-4">
+
+              <div class="row mb-3">
+                <label class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv burg'u qudug'ining koordinatasi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.type.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Shimoliy kenglik</label>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lat_degree }}
+                    <span class="input-group-text">°</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lat_minute }}
+                    <span class="input-group-text">'</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lat_second }}
+                    <span class="input-group-text">"</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.type.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">Sharqiy uzunlik</label>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lon_degree }}
+                    <span class="input-group-text">°</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lon_minute }}
+                    <span class="input-group-text">'</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.lon_second }}
+                    <span class="input-group-text">"</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.type.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">[x; y]</label>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.x }}
+                    <span class="input-group-text">x</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center">
+                  <div class="input-group">
+                    {{ form.y }}
+                    <span class="input-group-text">y</span>
+                  </div>
+                </div>
+                <div class="col-sm-2 d-flex align-items-center"></div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="{{ form.address.id_for_label }}" class="col-sm-6 col-form-label col-form-label-lg">To'ldirilgan sanasi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  {{ form.created_at }}
+                </div>
+              </div>
+
+            </section><!-- End Section -->
+            
+            <!-- Section -->
+            <section class="col-12 px-4">
+              <div class="row mt-4">
+
+                <div class="col-sm-3"></div>
+
+                <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                  <!-- Button -->
+                  <div class="col-12" role="button">
+                    <div class="card rounded-4 shadow-none border border-4">
+                      <button class="btn card-body py-4 text-center" data-bs-toggle="modal" data-bs-target="#hydrogeologicalPasportModal" type="button">
+                        <h3 class="fw-semibold mb-0">Jadval</h3>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- End Button -->
+                </div>
+                <div class="col-sm-3 d-flex align-items-center justify-content-center ">
+                  <!-- Button -->
+                  <div class="col-12" role="button">
+                    <div class="card rounded-4 shadow-none border border-4">
+                      <button class="btn card-body py-4 text-center" type="submit">
+                        <h3 class="fw-semibold mb-0">Saqlash</h3>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- End Button -->
+                </div>
+
+                <div class="col-sm-3"></div>
+                
+              </div>
+
+            </section><!-- End Section -->
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% include "components/message-success.html" with messages=messages form=form %}
+{% include "components/modals.html" with modal='hydrogeological' %}
+
+{% endblock scripts %}

@@ -1,0 +1,256 @@
+{% extends "base.html" %} {% load static %} {% block title %}Yerosti suvlari sathi rejimi{% endblock %} {% block styles %}
+{% load custom_tags %}
+<style>
+  .blue {
+    color: #012970;
+  }
+  tbody {
+      display:block;
+      height:60vh;
+      overflow:auto;
+      width: 100%;
+  }
+  thead, tbody tr {
+      display:table;
+      width:100%;
+      table-layout:fixed;
+  }
+  thead{
+    width: calc(100% - 15px);
+  }
+    /* width */
+  tbody::-webkit-scrollbar {
+    width: 15px;
+    position: fixed;
+  }
+
+  /* Track */
+  tbody::-webkit-scrollbar-track {
+    background-color: hsl(250 15% 93%);
+    border-radius: 9999px;
+    position: fixed;
+  }
+  
+  /* Handle */
+  tbody::-webkit-scrollbar-thumb {
+    
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #AAAAAA;
+  }
+
+  /* Handle on hover */
+  tbody::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0,0,0,0.2); 
+  }
+
+  .fullscreen-btn {
+    visibility: hidden;
+    position: absolute;
+    bottom: 15px;
+    right: 35px;
+    z-index: 10;
+  }
+</style>
+{% endblock styles %} {% block content %} 
+
+{% include "components/loading_modal.html" %}
+<main>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-3" style='height:88vh'>
+
+        <div class="card rounded-2 h-100 mb-0 overflow-hidden">
+          <div class="card-body" style='display: flex;flex-direction: column;'>
+  
+            <div class="row mt-3 mb-3">
+              <label for="station" class="col-sm-6 col-form-label">Ekspeditsiyalar nomi</label>
+              <div class="col-sm-6 d-flex align-items-center">
+                <select class="form-control station_select" id="station">
+                </select>
+              </div>
+            </div>
+  
+            <div class="row mb-3">
+              <label for="id_well" class="col-sm-6 col-form-label">Kuzatuv-burg'u qudug'i raqami</label>
+              <div class="col-sm-6 d-flex align-items-center">
+                <select class="form-control well_select" id="id_well" name='well' required>
+                </select>
+              </div>
+            </div>
+
+            {% comment %} <div class="buttons-overlay"></div> {% endcomment %}
+
+            <div class="row mb-3 blue mt-auto">
+              <h5>Butun davr uchun malumotlar</h5>
+            </div>
+
+            <dl class="row mb-3">
+              <dt class="col-sm-6">Min</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_min'></dd>
+      
+              <dt class="col-sm-6">Max</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_max'></dd>
+      
+              <dt class="col-sm-6">O'rtacha</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_avg'></dd>
+      
+              <dt class="col-sm-6">Dispersiya</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_variance'></dd>
+
+              <dt class="col-sm-6">Standart og'ish</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_std_dev'></dd>
+
+              <dt class="col-sm-6">O'zgarish koeffitsienti</dt>
+              <dd class="col-sm-6 mb-0" id='all_time_cv'></dd>
+            </dl>
+            
+            
+
+              <div class="row mb-3 position-relative ">
+                
+                
+                <div class="col-6">
+                  <div class="row mb-3"><input class='form-control add-spin' type='number' id='oneyear' min='0'></input></div>
+                  <div class="row"><input class='form-control add-spin' type='number' id='secondyear' min='0'></input></div>
+                </div>
+                <div class="col-6">
+                  <div class="row mb-3">
+                    <div class="col-12">
+                      <button class='btn btn-primary w-100' type='button' id='graphOneYear'>Grafik</button>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-12">
+                      <button class='btn btn-primary w-100'  type='button' id='graphCompare'>Solishtirma Grafik</button>
+                    </div>
+                  </div>
+                  <button class='btn btn-primary' type='button' id='heatmap'>Heatmap</button>
+                </div>
+              </div>
+    
+    
+            
+          </div>
+        </div>
+
+      </div>
+      <div class="col-12 col-lg-9" style='height:88vh'>
+
+        <div class="card rounded-2 h-100 mb-0 overflow-hidden">
+          <div class="card-body">
+              <div class="row my-3 text-center blue"><h1>Yerosti suvlari sathi rejimi</h1></div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="row mb-3">
+                    <div class="col-sm-8 d-flex align-items-center">
+                      <select class="form-select" id="start_month">
+                        <option value="">---------</option>
+                        <option value="1">Yanvar</option>
+                        <option value="2">Fevral</option>
+                        <option value="3">Mart</option>
+                        <option value="4">Aprel</option>
+                        <option value="5">May</option>
+                        <option value="6">Iyun</option>
+                        <option value="7">Iyul</option>
+                        <option value="8">Avgust</option>
+                        <option value="9">Sentyabr</option>
+                        <option value="10">Oktyabr</option>
+                        <option value="11">Noyabr</option>
+                        <option value="12">Dekabr</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center">
+                      <input type="number" name="start_year" class='form-control add-spin' id='start_year' value='1900'>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                  <hr class='w-50 mx-auto' style='height:3px;border-width:0;color:black;background-color:black'>
+                </div>
+                <div class="col-lg-4">
+                  <div class="row mb-3">
+                    
+                    <div class="col-sm-8 d-flex align-items-center">
+                      <select class="form-select" id="end_month">
+                        <option value="">---------</option>
+                        <option value="1">Yanvar</option>
+                        <option value="2">Fevral</option>
+                        <option value="3">Mart</option>
+                        <option value="4">Aprel</option>
+                        <option value="5">May</option>
+                        <option value="6">Iyun</option>
+                        <option value="7">Iyul</option>
+                        <option value="8">Avgust</option>
+                        <option value="9">Sentyabr</option>
+                        <option value="10">Oktyabr</option>
+                        <option value="11">Noyabr</option>
+                        <option value="12">Dekabr</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center">
+                      <input type="number" name="end_year" class='form-control add-spin' id='end_year' value='1900'>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-primary ms-auto" id='filter-button'>Ko'rsatish</button>
+                </div>
+                
+              </div>
+              
+              <div class="row my-3">
+                <div class="table-responsive position-relative" >
+                  <button class="btn btn-primary fullscreen-btn" id="fullscreenBtn" type='button'>
+                    <i class="bi bi-arrows-fullscreen"></i>
+                  </button>
+                  <table class="table table-bordered water_level_table table-sm mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th scope="col">Yil</th>
+                        <th scope="col">I</th>
+                        <th scope="col">II</th>
+                        <th scope="col">III</th>
+                        <th scope="col">IV</th>
+                        <th scope="col">V</th>
+                        <th scope="col">VI</th>
+                        <th scope="col">VII</th>
+                        <th scope="col">VIII</th>
+                        <th scope="col">IX</th>
+                        <th scope="col">X</th>
+                        <th scope="col">XI</th>
+                        <th scope="col">XII</th>
+                        <th scope="col">O'rtacha</th>
+                        <th scope="col" style='font-size:0.9rem'>Amplituda</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+    
+    
+    
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% include "components/message-success.html" with messages=messages form=form %}
+{% include "components/loading_modal.html" %}
+{% include "components/modals.html" with modal='fullscreenmodal' %}
+{% include "components/modals.html" with modal='imagedownloadmodal' %}
+<script src="{% static 'app/assets/js/hydromelioratical-water-level-show.js' %}"></script>
+
+{% endblock scripts %}

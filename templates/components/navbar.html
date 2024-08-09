@@ -1,0 +1,52 @@
+{% comment %} <header id="header" class="header d-flex align-items-center shadow-none" style="background-color: transparent">
+  <nav class="header-nav w-100">
+    <ul class="d-flex align-items-center w-100">
+      {% if title %}
+      <li class="nav-item pe-3 me-auto">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url url %}">
+          <h3 class="px-0 py-2 m-0"> <i class="bi bi-arrow-left-circle-fill"></i> {{ title }}</h3>
+        </a>
+      </li>
+      {% endif %}
+      <li class="nav-item dropdown pe-3 ms-auto">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#dropdown" data-bs-toggle="dropdown">
+          <span class="btn btn-outline-primary px-4 py-2 rounded-5 d-md-block dropdown-toggle">{{ user.get_username }}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile m-0">
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/admin">
+              <i class="bi bi-person"></i>
+              Admin Panelga kirish
+            </a>
+          </li>
+          <li>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button class="dropdown-item d-flex align-items-center" type="submit">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Chiqish</span>
+              </button>
+            </form>
+          </li>
+          
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header> {% endcomment %}
+
+
+<div class="pagetitle">
+    {% if title %}
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url url %}">
+          <h1 class="px-0 py-2 m-0"> <i class="bi bi-arrow-left-circle-fill"></i> {{ title }}</h1>
+        </a>
+    {% endif %}
+    <!-- <h1>Dashboard</h1> -->
+    <!-- <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </nav> -->
+  </div><!-- End Page Title -->

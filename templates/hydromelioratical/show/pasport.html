@@ -1,0 +1,178 @@
+{% extends "base.html" %} {% load static %} {% block title %}Kuzatuv-burg'u qudug'i pasporti{% endblock %} {% block styles %}
+<style>
+  .blue {
+    color: #012970;
+  }
+</style>
+{% endblock styles %} {% block content %} 
+<main>
+  <section class="container-fluid">
+    <div class="card col-12 rounded-4">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <!-- Section -->
+          <section class="col-lg-6 col-12 px-4 my-4">
+
+            <div class="row mb-3">
+              <label for="station" class="col-sm-6 col-form-label col-form-label-lg">Stansiyalar nomi</label>
+              <div class="col-sm-6 d-flex align-items-center">
+                <select class="form-control station_select">
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="id_well" class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv-burg'u qudug'i raqami</label>
+              <div class="col-sm-6 d-flex align-items-center">
+                <select class="form-control well_select" id="id_well" name='well' required>
+                </select>
+              </div>
+            </div>
+
+          </section><!-- End Section -->
+          <div class="wrapper" style="visibility: hidden;">
+            <div class="row my-3 text-center blue"><h1>Kuzatuv-burg'u qudug'i pasporti</h1></div>
+            <div class="row">
+              <!-- Section -->
+              <section class="col-lg-6 col-12 px-4">
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Qaysi davlat tashkilotiga mansubligi</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="organization"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Qaysi stansiya</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="station"></div>
+                </div>
+              </section>
+              <!-- End Section -->
+
+              <!-- Section -->
+              <section class="col-lg-6 col-12 px-4">
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv qudug'i raqami</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="well_number"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv burg'u qudug'ining turi</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="type"></div>
+                </div>
+              </section>
+              <!-- End Section -->
+            </div>
+
+            <div class="row my-3 text-center blue"><h1>Ma'muriy joylashuvi</h1></div>
+            <div class="row">
+              <!-- Section -->
+              <section class="col-lg-6 col-12 px-4">
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Viloyat nomi</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="region"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="country" class="col-sm-6 col-form-label col-form-label-lg">Tuman nomi</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="district"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Mo'ljal</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="address"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Joylashuv o'rni</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="location"></div>
+                </div>
+              </section>
+              <!-- End Section -->
+
+              <!-- Section -->
+              <section class="col-xxl-6 col-12 px-4">
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv burg'u qudug'ining koordinatasi</label>
+                  <div class="col-sm-6 d-flex align-items-center"></div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Shimoliy kenglik</label>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lat_degree">
+                      <span class="input-group-text">°</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lat_minute">
+                      <span class="input-group-text">'</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lat_second">
+                      <span class="input-group-text">"</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">Sharqiy uzunlik</label>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lon_degree">
+                      <span class="input-group-text">°</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lon_minute">
+                      <span class="input-group-text">'</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="lon_second">
+                      <span class="input-group-text">"</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">[x; y]</label>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="x">
+                      <span class="input-group-text">x</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center">
+                    <div class="input-group">
+                      <input type="number" class="form-control" disabled id="y">
+                      <span class="input-group-text">y</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 d-flex align-items-center"></div>
+                </div>
+
+                <div class="row mb-5">
+                  <label class="col-sm-6 col-form-label col-form-label-lg">To'ldirilgan sanasi</label>
+                  <div class="col-sm-6 d-flex align-items-center col-form-label-lg" id="created_at"></div>
+                </div>
+              </section>
+              <!-- End Section -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %} {% block scripts %} {% include "components/message-success.html" with messages=messages form=form %} {% include "components/modals.html" with modal='hydrogeological' %}
+{% include "components/loading_modal.html" %}
+<script src="{% static 'app/assets/js/hydromelioratical-show.js' %}"></script>
+
+{% endblock scripts %}

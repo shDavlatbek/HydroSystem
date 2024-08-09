@@ -1,0 +1,11 @@
+pandas
+openpyxl
+pymannkendall
+django
+matplotlib
+seaborn
+django-jazzmin
+psycopg2-binary
+gunicorn
+# dj-database-url
+django-environ

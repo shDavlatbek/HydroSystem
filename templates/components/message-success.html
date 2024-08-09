@@ -1,0 +1,45 @@
+{% if messages %}
+<div class="toast-container position-fixed top-0 p-5 start-50 translate-middle-x">
+  <div id="successToast" class="toast text-bg-info p-0 m-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        {% for message in messages %}
+            <p class="p-0 m-0">{{ message }}</p>
+        {% endfor %}
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+  {% if form.errors %}
+  {% for message in form.errors %}
+  <div class="toast text-bg-info p-0 m-0 form-toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        <p class="p-0 m-0">{{ message.message }}</p>
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+<div class="toast-container position-fixed top-0 p-5 start-50 translate-middle-x">
+  
+</div>
+{% endif %}
+
+{% block scripts %}
+{% if messages %}
+<script>
+  bootstrap.Toast.getOrCreateInstance(document.getElementById('successToast')).show()
+</script>
+{% endif %}
+{% if form.errors %}
+<script>
+  $.each($('.form-toast'), function(toast){
+    bootstrap.Toast.getOrCreateInstance(toast).show()  })
+</script>
+{% endif %}
+{% endblock scripts %}
+

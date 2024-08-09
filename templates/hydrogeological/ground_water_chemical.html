@@ -1,0 +1,159 @@
+{% extends "base.html" %} {% load static %} {% block title %}Yerosti suvlari kimyoviy tarkibi{% endblock %} {% block styles %}
+{% load custom_tags %}
+<style>
+  .blue {
+    color: #012970;
+  }
+</style>
+{% endblock styles %} {% block content %} 
+
+{% include "components/loading_modal.html" %}
+<main>
+  <section class="container-fluid">
+    <div class="card col-12 rounded-4 mb-0">
+      <div class="card-body">
+        <form method="post" id='water_level_table_form'>
+          {% csrf_token %}
+          <div class="row my-3 text-center blue"><h1>Yerosti suvlari kimyoviy tarkibi</h1></div>
+          <div class="row">
+
+            <!-- Section -->
+            <section class="col-lg-6 col-12 px-4">
+
+              <div class="row mb-3">
+                <label for="station" class="col-sm-6 col-form-label col-form-label-lg">Stansiyalar nomi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  <select class="form-control station_select" id="station">
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="id_well" class="col-sm-6 col-form-label col-form-label-lg">Kuzatuv-burg'u qudug'i raqami</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  <select class="form-control well_select" id="id_well" name='well' required>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="id_well" class="col-sm-6 col-form-label col-form-label-lg">Taxlil turi</label>
+                <div class="col-sm-6 d-flex align-items-center">
+                  <select class="form-control" name='chemical'>
+                  </select>
+                </div>
+              </div>
+
+            </section><!-- End Section -->
+
+          </div>
+          
+          <div class="row overflow-auto my-3" style='height: 55vh;'>
+            {% comment %} <div class="table-responsive" >
+              <table class="table table-bordered water_level_table">
+                <thead class="table-light sticky-top">
+                  <tr>
+                    <th scope="col">Yil</th>
+                    <th scope="col">I</th>
+                    <th scope="col">II</th>
+                    <th scope="col">III</th>
+                    <th scope="col">IV</th>
+                    <th scope="col">V</th>
+                    <th scope="col">VI</th>
+                    <th scope="col">VII</th>
+                    <th scope="col">VIII</th>
+                    <th scope="col">IX</th>
+                    <th scope="col">X</th>
+                    <th scope="col">XI</th>
+                    <th scope="col">XII</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="number" name="year" class='form-control'></td>
+                    <td><input type="number" name="I" class='form-control'></td>
+                    <td><input type="number" name="II" class='form-control'></td>
+                    <td><input type="number" name="III" class='form-control'></td>
+                    <td><input type="number" name="IV" class='form-control'></td>
+                    <td><input type="number" name="V" class='form-control'></td>
+                    <td><input type="number" name="VI" class='form-control'></td>
+                    <td><input type="number" name="VII" class='form-control'></td>
+                    <td><input type="number" name="VIII" class='form-control'></td>
+                    <td><input type="number" name="IX" class='form-control'></td>
+                    <td><input type="number" name="X" class='form-control'></td>
+                    <td><input type="number" name="XI" class='form-control'></td>
+                    <td><input type="number" name="XII" class='form-control'></td>
+                    <td><button type="button" class="btn btn-danger" onclick="deleteTR(this)"><i class="bi bi-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> {% endcomment %}
+            
+          </div>
+
+          {% comment %} <div class="row">
+
+            <div class="col-sm-2"></div>
+            <div class="col-sm-1">
+
+              <!-- Button -->
+              <div class="col-12" role="button">
+                <div class="card rounded-4 shadow-none border border-4">
+                  <button class="btn card-body py-4 text-center add_row" type="button">
+                    <h3 class="fw-semibold mb-0">+</h3>
+                  </button>
+                </div>
+              </div>
+              <!-- End Button -->
+
+            </div>
+
+            <div class="col-sm-3 d-flex align-items-center justify-content-center">
+
+              <!-- Button -->
+              <div class="col-12" role="button">
+                <div class="card rounded-4 shadow-none border border-4">
+                  <label for='excel_file' class="btn card-body py-4 text-center" type="button">
+                    <h3 class="fw-semibold mb-0">Fayldan import qilish</h3>
+                    <input type="file" name="excel_file" id="excel_file" hidden>
+                  </label>
+                </div>
+              </div>
+              <!-- End Button -->
+
+            </div>
+
+            <div class="col-sm-3 d-flex align-items-center justify-content-center ">
+
+              <!-- Button -->
+              <div class="col-12" role="button">
+                <div class="card rounded-4 shadow-none border border-4">
+                  <button class="btn card-body py-4 text-center" type="submit">
+                    <h3 class="fw-semibold mb-0">Saqlash</h3>
+                  </button>
+                </div>
+              </div>
+              <!-- End Button -->
+               
+            </div>
+
+            <div class="col-sm-3"></div>
+            
+          </div> {% endcomment %}
+
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% include "components/message-success.html" with messages=messages form=form %}
+{% include "components/modals.html" with modal='hydrogeological' %}
+<script src="{% static 'app/assets/js/hydra.js' %}"></script>
+
+{% endblock scripts %}

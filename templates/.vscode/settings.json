@@ -1,0 +1,10 @@
+{
+    "css.styleSheets": [
+      "assets/vendor/bootstrap/css/bootstrap.css",
+    //   "src/**/*.scss"
+    ],
+    "emmet.includeLanguages": {
+      "django-html": "html",
+      "jinja-html": "html"
+  }
+  }

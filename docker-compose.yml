@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/data.sql:/docker-entrypoint-initdb.d/data.sql
+    env_file:
+      - .env
+
+  web:
+    build: .
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  backup:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backup:/backups
+      - ./backup.sh:/app/backup.sh
+    entrypoint: /bin/bash
+    depends_on:
+      - db
+    command: -c "while true; do /app/backup.sh; sleep 8660; done"  # Runs backup.sh every 24 hours
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
