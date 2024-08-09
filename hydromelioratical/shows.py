@@ -347,13 +347,14 @@ class PasportView(LoginRequiredMixin, TemplateView):
                 "id": well.id,
                 "organization": well.organization.name,
                 "well_number": well.well_number,
-                "station": well.expedicion.name,
+                "expedicion": well.expedicion.name,
                 "type": well.type.name,
                 "region":well.region.name,
                 "district": well.district.name,
                 "address": well.address,
                 "location": well.location.name,
                 "created_at": well.created_at.strftime("%Y-%m-%d"),
+                
                 "coordinate": {
                     "lat_degree": coordinate.lat_degree,
                     "lat_minute": coordinate.lat_minute,
@@ -363,7 +364,7 @@ class PasportView(LoginRequiredMixin, TemplateView):
                     "lon_second": coordinate.lon_second,
                     "x": coordinate.x,
                     "y": coordinate.y
-                }
+                } if coordinate else ''
             }
             
             return JsonResponse({'success': True, 'well':well_data})

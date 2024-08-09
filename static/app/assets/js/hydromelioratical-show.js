@@ -19,7 +19,7 @@ function getCookie(name) {
 
 function fillPasportData(well){
   console.log(well);
-  $.each(['well_number', 'organization', 'station', 'type', 
+  $.each(['well_number', 'organization', 'expedicion', 'type', 
           'region', 'district', 'address', 'location', 'created_at'], function(index, field){
     if (well[field]){
       $('#'+field).html(well[field])
@@ -37,61 +37,61 @@ function fillPasportData(well){
 
 $(document).ready(function () {
 
-  var stationSelect = $(".station_select");
+  var expedicionSelect = $(".station_select");
 
   var wellSelect = $(".well_select");
-  stationSelect.empty().append('<option value="">---------</option>');
+  expedicionSelect.empty().append('<option value="">---------</option>');
   wellSelect.empty();
 
   $.ajax({
-    url: "/hydrogeological/station/",
+    url: "/hydromelioratical/expedicion/",
     method: "GET",
     success: function (response) {
-      var stations = response.stations;
+      var expedicions = response.expedicions;
 
-      $.each(stations, function (index, station) {
+      $.each(expedicions, function (index, expedicion) {
         $.ajax({
-          url: "/hydrogeological/station-well/",
+          url: "/hydromelioratical/expedicion-well/",
           method: "GET",
           data: {
-            station_id: station.id,
+            expedicion_id: expedicion.id,
           },
           success: function (response) {
             if (response.wells) {
               var option = $("<option></option>")
-                .attr("value", station.id)
-                .text(station.name + " (" + response.wells.length + ")");
-              stationSelect.append(option);
+                .attr("value", expedicion.id)
+                .text(expedicion.name + " (" + response.wells.length + ")");
+              expedicionSelect.append(option);
             } else {
               var option = $("<option></option>")
-                .attr("value", station.id)
-                .text(station.name + " (0)");
-              stationSelect.append(option);
+                .attr("value", expedicion.id)
+                .text(expedicion.name + " (0)");
+              expedicionSelect.append(option);
             }
           },
           error: function (response) {
             var option = $("<option></option>")
-              .attr("value", station.id)
-              .text(station.name + " (0)");
-            stationSelect.append(option);
+              .attr("value", expedicion.id)
+              .text(expedicion.name + " (0)");
+            expedicionSelect.append(option);
           },
         });
       });
     },
     error: function (response) {
-      alert("Failed to load stations");
+      alert("Failed to load expedicions");
     },
   });
 
-  stationSelect.on("change", function () {
-    var stationId = $(this).val();
+  expedicionSelect.on("change", function () {
+    var expedicionId = $(this).val();
 
-    if (stationId && !$(this).hasClass("single-selection")) {
+    if (expedicionId && !$(this).hasClass("single-selection")) {
       $.ajax({
-        url: "/hydrogeological/station-well/",
+        url: "/hydromelioratical/expedicion-well/",
         method: "GET",
         data: {
-          station_id: stationId,
+          expedicion_id: expedicionId,
         },
         success: function (response) {
           var wells = response.wells;
@@ -117,7 +117,7 @@ $(document).ready(function () {
     var wellId = $(this).val();
     if (wellId) {
       $.ajax({
-        url: '/hydrogeological/show/pasport/',
+        url: '/hydromelioratical/show/pasport/',
         method: 'POST',
         data: {
           well_id: wellId

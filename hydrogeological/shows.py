@@ -366,6 +366,7 @@ class PasportView(LoginRequiredMixin, TemplateView):
                 "address": well.address,
                 "location": well.location.name,
                 "created_at": well.created_at.strftime("%Y-%m-%d"),
+                
                 "coordinate": {
                     "lat_degree": coordinate.lat_degree,
                     "lat_minute": coordinate.lat_minute,
@@ -375,7 +376,7 @@ class PasportView(LoginRequiredMixin, TemplateView):
                     "lon_second": coordinate.lon_second,
                     "x": coordinate.x,
                     "y": coordinate.y
-                }
+                } if coordinate else ''
             }
             
             return JsonResponse({'success': True, 'well':well_data})
