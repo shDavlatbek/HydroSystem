@@ -23,5 +23,4 @@ python manage.py collectstatic --noinput
 
 # Start Gunicorn
 echo "Starting Gunicorn..."
-# exec gunicorn --bind 0.0.0.0:8000 config.wsgi:application
-python manage.py runserver 0.0.0.0:8000
+exec gunicorn --bind 0.0.0.0:8199 config.wsgi:application

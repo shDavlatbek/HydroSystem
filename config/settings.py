@@ -29,8 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0e@6hmkd50i*e&_ije+q=88oy07l4%8+=mgs6c1&z6lofh_60@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env('DEBUG')
-DEBUG = True
+DEBUG = env('DEBUG')
+# DEBUG = True
 
 ALLOWED_HOSTS = ['hydrologic-database.uz', 'localhost', '127.0.0.1']
 
@@ -98,17 +98,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hydrosystem',
-        'USER': 'hydro',
-        'PASSWORD': 'hydro',
-        'HOST': 'localhost',
-        'DBNAME': 'hydrosystem',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'hydrosystem',
+#         'USER': 'hydro',
+#         'PASSWORD': 'hydro',
+#         'HOST': 'localhost',
+#         'DBNAME': 'hydrosystem',
+#         'PORT': '5432',
+#     }
+# }
 
 # DATABASES = {
 #     'default': dj_database_url.config(
@@ -116,16 +116,16 @@ DATABASES = {
 #     )
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env('DJANGO_DB_NAME'),
-#         'USER': env('DJANGO_DB_USER'),
-#         'PASSWORD': env('DJANGO_DB_PASSWORD'),
-#         'HOST': env('DJANGO_DB_HOST'),
-#         'PORT': env('DJANGO_DB_PORT'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DJANGO_DB_NAME'),
+        'USER': env('DJANGO_DB_USER'),
+        'PASSWORD': env('DJANGO_DB_PASSWORD'),
+        'HOST': env('DJANGO_DB_HOST'),
+        'PORT': env('DJANGO_DB_PORT'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

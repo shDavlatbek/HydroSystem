@@ -9,11 +9,11 @@ services:
 
   web:
     build: .
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8199
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8199:8199"
     depends_on:
       - db
     env_file:
@@ -28,7 +28,7 @@ services:
     entrypoint: /bin/bash
     depends_on:
       - db
-    command: -c "while true; do /app/backup.sh; sleep 8660; done"  # Runs backup.sh every 24 hours
+    command: -c "while true; do /app/backup.sh; sleep 86400; done"  # Runs backup.sh every 24 hours
     env_file:
       - .env
 
