@@ -9,7 +9,9 @@ services:
     restart: always
 
   web:
-    build: Dev.Dockerfile
+    build:
+      context: .
+      dockerfile: Dev.Dockerfile
     command: python manage.py runserver 0.0.0.0:8010
     volumes:
       - .:/app
