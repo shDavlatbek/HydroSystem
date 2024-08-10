@@ -9,7 +9,7 @@ services:
     restart: always
 
   web:
-    build: .
+    build: Dev.Dockerfile
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8199
     volumes:
       - .:/app

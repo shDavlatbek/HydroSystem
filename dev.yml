@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/data.sql:/docker-entrypoint-initdb.d/data.sql
+    env_file:
+      - .env
+    restart: always
+
+  web:
+    build: Dev.Dockerfile
+    command: python manage.py runserver 0.0.0.0:8010
+    volumes:
+      - .:/app
+    ports:
+      - "8010:8010"
+    depends_on:
+      - db
+    env_file:
+      - dev.env
+    restart: always
+
+  # backup:
+  #   image: postgres:16
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #     - ./backup:/backups
+  #     - ./backup.sh:/app/backup.sh
+  #   entrypoint: /bin/bash
+  #   depends_on:
+  #     - db
+  #   command: -c "while true; do /app/backup.sh; sleep 86400; done"  # Runs backup.sh every 24 hours
+  #   env_file:
+  #     - .env
+  #   restart: always
+
+volumes:
+  postgres_data:
