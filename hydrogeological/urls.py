@@ -20,6 +20,8 @@ urlpatterns = [
     path('show/water-level/heatmap', shows.HeatMap.as_view(), name='water-level-heatmap'),
     path('show/water-level/one-year', shows.GraphOneYear.as_view(), name='water-level-one-year'),
     path('show/water-level/compare-year', shows.GraphCompareTwoYears.as_view(), name='water-level-compare-year'),
+    
+    path('lithologic/', views.LithologicView.as_view(), name='lithologic'),
 ] + \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -118,3 +118,6 @@ class ImportView(LoginRequiredMixin, TemplateView):
         
         except Exception as e:
             return JsonResponse({'status': 'failed', 'error_message': str(e)})
+
+class LithologicView(LoginRequiredMixin, TemplateView):
+    template_name = os.path.join('lithologic.html')
