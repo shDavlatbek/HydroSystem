@@ -55,23 +55,8 @@
 {% endblock styles %} {% block content %} {% include "components/loading_modal.html" %}
 
 <script>
-  function enforceMinMax(el) {
-    if (el.value != "") {
-      if (parseInt(el.value) < parseInt(el.min)) {
-        el.value = el.min;
-      }
-      if (parseInt(el.value) > parseInt(el.max)) {
-        el.value = el.max;
-      }
-    }
-  }
-  function removeLithologyRow(button) {
-    // Find the parent element with class 'lithology-row' and remove it
-    const row = button.closest('.lithology-row');
-    if (row) {
-        row.remove();
-    }
-}
+  
+  
 </script>
 <main>
   <section class="container-fluid">
@@ -95,22 +80,22 @@
 
             <div class="mb-3 w-100 d-flex">
               <input type="number" id="well-height" name="well-height" min="0" value="100" hidden />
-              <button class="btn btn-primary" id="download-png">Download SVG</button>
-              <button class="btn btn-primary ms-auto" id="add-interval">Add Interval</button>
+              <button class="btn btn-primary" id="download-png">Yuklab olish</button>
+              <button class="btn btn-primary ms-auto" id="add-interval"><i class="bi bi-plus-circle px-5"></i></button>
               <canvas id="canvas" style="display: none"></canvas>
             </div>
             <div id="lithology-inputs">
               <div class="lithology-row input-group mb-3">
                   <label for="depth-start-0" class="input-group-text">Dan (m):</label>
-                  <input type="number" class="form-control" id="depth-start-0" name="depth-start" min="0" max="100" value="0" onkeyup=enforceMinMax(this) />
+                  <input type="number" class="form-control" id="depth-start-0" name="depth-start" min="0" max="100" value="0" />
                   <label class="input-group-text" for="depth-end-0">Gacha (m):</label>
-                  <input type="number" class="form-control" id="depth-end-0" name="depth-end" min="0" max="100" value="0" onkeyup=enforceMinMax(this) />
+                  <input type="number" class="form-control" id="depth-end-0" name="depth-end" min="0" max="100" value="0" />
                   <label class="input-group-text" for="pattern-0">Element:</label>
                   <select class="form-control" id="pattern-0" name="pattern">
                     <option value="sandstone">Sandstone</option>
                     <option value="shale">Shale</option>
                   </select>
-                  <button class="btn btn-outline-danger deleteRow" type="button" onclick="removeLithologyRow(this)"><i class="bi bi-trash"></i></button>
+                  <button class="btn btn-outline-danger deleteRow" type="button"><i class="bi bi-trash"></i></button>
               </div>
             </div>
             
@@ -120,14 +105,15 @@
       <div class="col-12 col-lg-6" style="height: 88vh">
         <div class="card rounded-2 h-100 mb-0">
           <div class="card-body">
-            <div class="row my-3 text-center blue"><h1>Yerosti suvlari sathi rejimi</h1></div>
-            <div class="row">
-              <div>
-                <svg id="well-svg" class="well-container overflow-visible" xmlns="http://www.w3.org/2000/svg" width="250" height="500">
+            <div class="row my-3 text-center blue"><h1>Litologic Surat</h1></div>
+            <div class="row d-flex justify-content-center">
+              <div class="d-flex">
+                <svg id="well-svg" class="well-container overflow-visible mx-auto p-5" xmlns="http://www.w3.org/2000/svg" width="250" height="500">
                   <!-- SVG patterns and well visualization will go here -->
+
                 </svg>
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" id="well-svg">
+              <svg xmlns="http://www.w3.org/2000/svg"  height="0" viewBox="0 0 32 32" fill="none" id="well-svg">
                 <defs>
                   <pattern id="sandstone" patternUnits="userSpaceOnUse" width="32" height="32">
                     <path fill="#62C8CE" d="M0 0h64v64H0z" />
@@ -141,7 +127,7 @@
                 </defs>
               </svg>
 
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" id="well-svg">
+              <svg xmlns="http://www.w3.org/2000/svg" height="0" viewBox="0 0 32 32" fill="none" id="well-svg">
                 <defs>
                   <pattern id="shale" patternUnits="userSpaceOnUse" width="32" height="32">
                     <path fill="#FFF78F" d="M0 0h64v64H0z" />
@@ -160,8 +146,11 @@
   </section>
 </main>
 
-{% endblock content %} {% block scripts %} {% include "components/message-success.html" with messages=messages form=form %} {% include "components/loading_modal.html" %} {% include
-"components/modals.html" with modal='fullscreenmodal' %} {% include "components/modals.html" with modal='imagedownloadmodal' %}
+{% endblock content %} {% block scripts %} 
+{% include "components/message-success.html" with messages=messages form=form %} 
+{% include "components/loading_modal.html" %} 
+{% include "components/modals.html" with modal='fullscreenmodal' %} 
+{% include "components/modals.html" with modal='imagedownloadmodal' %}
 <script src="{% static 'app/assets/js/lithologic.js' %}"></script>
 
 {% endblock scripts %}
