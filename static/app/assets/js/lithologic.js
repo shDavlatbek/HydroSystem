@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
     function drawWell() {
-        const wellHeight = parseInt(wellHeightInput.value);
+        const wellHeight = parseFloat(wellHeightInput.value);
         wellSvg.setAttribute('height', wellHeight*5);
 
         // Clear the existing SVG elements
@@ -62,32 +62,52 @@ document.addEventListener('DOMContentLoaded', function () {
             <line x1="0" y1="0" x2="-20" y2="0" stroke="black" stroke-width="1"></line>
             <text x="-25" y="4" text-anchor="middle">0</text>
 
+            <line x1="0" y1="25" x2="-10" y2="25" stroke="black" stroke-width="1"></line>
+            
             <line x1="0" y1="50" x2="-20" y2="50" stroke="black" stroke-width="1"></line>
             <text x="-27" y="54" text-anchor="middle">10</text>
 
+            <line x1="0" y1="75" x2="-10" y2="75" stroke="black" stroke-width="1"></line>
+            
             <line x1="0" y1="100" x2="-20" y2="100" stroke="black" stroke-width="1"></line>
             <text x="-27" y="104" text-anchor="middle">20</text>
 
+            <line x1="0" y1="125" x2="-10" y2="125" stroke="black" stroke-width="1"></line>
+            
             <line x1="0" y1="150" x2="-20" y2="150" stroke="black" stroke-width="1"></line>
             <text x="-27" y="154" text-anchor="middle">30</text>
 
+            <line x1="0" y1="175" x2="-10" y2="175" stroke="black" stroke-width="1"></line>
+            
             <line x1="0" y1="200" x2="-20" y2="200" stroke="black" stroke-width="1"></line>
             <text x="-27" y="204" text-anchor="middle">40</text>
+
+            <line x1="0" y1="225" x2="-10" y2="225" stroke="black" stroke-width="1"></line>
 
             <line x1="0" y1="250" x2="-20" y2="250" stroke="black" stroke-width="1"></line>
             <text x="-27" y="254" text-anchor="middle">50</text>
 
+            <line x1="0" y1="275" x2="-10" y2="275" stroke="black" stroke-width="1"></line>
+
             <line x1="0" y1="300" x2="-20" y2="300" stroke="black" stroke-width="1"></line>
             <text x="-27" y="304" text-anchor="middle">60</text>
+
+            <line x1="0" y1="325" x2="-10" y2="325" stroke="black" stroke-width="1"></line>
 
             <line x1="0" y1="350" x2="-20" y2="350" stroke="black" stroke-width="1"></line>
             <text x="-27" y="354" text-anchor="middle">70</text>
 
+            <line x1="0" y1="375" x2="-10" y2="375" stroke="black" stroke-width="1"></line>
+
             <line x1="0" y1="400" x2="-20" y2="400" stroke="black" stroke-width="1"></line>
             <text x="-27" y="404" text-anchor="middle">80</text>
 
+            <line x1="0" y1="425" x2="-10" y2="425" stroke="black" stroke-width="1"></line>
+
             <line x1="0" y1="450" x2="-20" y2="450" stroke="black" stroke-width="1"></line>
             <text x="-27" y="454" text-anchor="middle">90</text>
+
+            <line x1="0" y1="475" x2="-10" y2="475" stroke="black" stroke-width="1"></line>            
 
             <line x1="0" y1="500" x2="-20" y2="500" stroke="black" stroke-width="1"></line>
             <text x="-30" y="504" text-anchor="middle">100</text>
@@ -101,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const intervals = document.querySelectorAll('.lithology-row');
         intervals.forEach(row => {
             
-            const depthStart = parseInt(row.querySelector('input[name="depth-start"]').value);
-            const depthEnd = parseInt(row.querySelector('input[name="depth-end"]').value);
+            const depthStart = parseFloat(row.querySelector('input[name="depth-start"]').value);
+            const depthEnd = parseFloat(row.querySelector('input[name="depth-end"]').value);
             const pattern = row.querySelector('select[name="pattern"]').value;
             const pattern_name = row.querySelector('select[name="pattern"]').options[row.querySelector('select[name="pattern"]').selectedIndex].text;
 
