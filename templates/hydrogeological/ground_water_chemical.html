@@ -114,9 +114,9 @@
               <!-- Button -->
               <div class="col-12" role="button">
                 <div class="card rounded-4 shadow-none border border-4">
-                  <label for='excel_file' class="btn card-body py-4 text-center" type="button">
+                  <label for='import-file-input' class="btn card-body py-4 text-center" type="button">
                     <h3 class="fw-semibold mb-0">Fayldan import qilish</h3>
-                    <input type="file" name="excel_file" id="excel_file" hidden>
+                    <input type="file" name="import-file-input" id="import-file-input" hidden>
                   </label>
                 </div>
               </div>
@@ -154,6 +154,7 @@
 
 {% include "components/message-success.html" with messages=messages form=form %}
 {% include "components/modals.html" with modal='hydrogeological' %}
+<script src="{% static 'app/assets/js/import.js' %}"></script>
 <script src="{% static 'app/assets/js/hydra.js' %}"></script>
 
 {% endblock scripts %}

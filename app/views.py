@@ -1,5 +1,7 @@
-from django.views.generic import TemplateView
+from django.http import JsonResponse
+from django.views.generic import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+import pandas as pd
 from hydrogeological.models import Well as HGWell
 from hydromelioratical.models import Well as HMWell
 from hydrometeorological.models import Hydropost, Meteostation
@@ -18,3 +20,30 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
 class TableView(LoginRequiredMixin, TemplateView):
     template_name = 'components/table.html'
+    
+    
+class ImportView(LoginRequiredMixin, View):
+    def post(self, request):
+        try:
+            file_obj = request.FILES['files']
+            df = pd.read_excel(file_obj, engine='openpyxl', header=None, index_col=None)
+            df.fillna('', inplace=True)
+            
+            df = self.adjust_columns(df, 13)
+
+            data_to_display = df.to_json(orient='records')
+            return JsonResponse({'status': True, 'data': data_to_display})
+
+        except Exception as e:
+            return JsonResponse({'status': False, 'error_message': str(e)})
+        
+    @staticmethod
+    def adjust_columns(df, target_columns):
+        target_columns += 1
+        num_columns = len(df.columns)
+        if num_columns < target_columns:
+            for i in range(target_columns - num_columns):
+                df[num_columns+i] = ''
+        elif num_columns > target_columns:
+            df = df.iloc[:, :target_columns]
+        return df

@@ -103,21 +103,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
 class ImportView(LoginRequiredMixin, TemplateView):
     template_name = os.path.join(TEMPLATE_DIR, 'import.html')
-    def post(self, request):
-        try:
-            file_obj = request.FILES['files']
-            df = pd.read_excel(file_obj, engine='openpyxl', header=None, index_col=None)
-
-            df = df.fillna('') 
-            # df = df.iloc[1:]   # Optionally drop the first row if it contains headers
-
-            # Convert DataFrame to HTML
-            data_to_display = df.to_json(orient='records')
-            # data_to_display = df.to_
-            return JsonResponse({'status': 'success', 'data': data_to_display})
-        
-        except Exception as e:
-            return JsonResponse({'status': 'failed', 'error_message': str(e)})
+    
 
 class LithologicView(LoginRequiredMixin, TemplateView):
     template_name = os.path.join('lithologic.html')

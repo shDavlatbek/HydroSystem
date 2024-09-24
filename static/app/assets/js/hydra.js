@@ -1,81 +1,4 @@
-/// <reference path="../../../../node_modules/@types/jquery/index.d.ts" />
-// Function to get CSRF cookie value
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-function addRowsToTable(data) {
-  var tbody = $('.water_level_table tbody');
-  // Clear existing rows except the first one
-  // tbody.find('tr:not(:first)').remove();
-  var numColumns = Number(Object.keys(data[0]).length) - 1;
-  // Loop through JSON data and append rows to the table
-  $.each(data, function(index, row) {
-      // Check if the row contains only empty strings
-      if (!Object.values(row).every(value => value === "")) {
-          var newRow = '<tr>';
-          for (var key in row) {
-              if (key < numColumns) {
-                if (row.hasOwnProperty(key)) {
-                  if (row[key] === "") {
-                      newRow += '<td><input type="number" class="form-control"></td>';
-                  } else {
-                      newRow += '<td><input type="number" class="form-control" value="' + row[key] + '"></td>';
-                  }
-                }
-              }
-          }
-          newRow += '<td><button type="button" class="btn btn-danger" onclick="deleteTR(this)"><i class="bi bi-trash"></i></button></td>';
-          newRow += '</tr>';
-          tbody.append(newRow);
-      }
-  });
-}
-
-// function addRowsToTable(jsonData) {
-//   var table = $('.water_level_table tbody');
-//   table.empty(); // Clear existing rows
-
-//   // Determine the number of columns from the header row
-//   var numColumns = jsonData[1].length; // Assuming the second row has all column headers
-
-//   // Loop through jsonData, starting from the second row (first row is headers)
-//   for (var i = 2; i < jsonData.length; i++) {
-//       var row = '<tr>';
-
-//       // Loop through each column in the row
-//       for (var j = 0; j < numColumns; j++) {
-//           var value = jsonData[i][j];
-
-//           // Append empty string if value is undefined or null
-//           if (value === undefined || value === null) {
-//               value = '';
-//           }
-
-//           // Create table data cell
-//           row += '<td>' + value + '</td>';
-//       }
-
-//       // Close row tag
-//       row += '</tr>';
-
-//       // Append row to table body
-//       table.append(row);
-//   }
-// }
 
 $(document).ready(function () {
 
@@ -86,7 +9,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "/hydrogeological/import/", // URL to your Django view for file upload
+      url: "/import/", // URL to your Django view for file upload
       data: formData,
       processData: false,
       contentType: false,
