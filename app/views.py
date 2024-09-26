@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import pandas as pd
 from hydrogeological.models import Well as HGWell
 from hydromelioratical.models import Well as HMWell
-from hydrometeorological.models import Hydropost, Meteostation
+from hydrometeorological.models import Hydropost, Meteostation, Mode
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
@@ -47,3 +47,13 @@ class ImportView(LoginRequiredMixin, View):
         elif num_columns > target_columns:
             df = df.iloc[:, :target_columns]
         return df
+    
+    
+class HydropostView(View):
+    def get(self, request):
+        return JsonResponse({'status': True, 'hydropost':[{"id": hydropost.id, "name": hydropost.name} for hydropost in Hydropost.objects.all()]})
+
+
+class HydropostModeView(View):
+    def get(self, request):
+        return JsonResponse({'status': True, 'mode':[{"id": mode.id, "name": mode.name} for mode in Mode.objects.all()]})

@@ -152,16 +152,6 @@ class HydrometriaView(LoginRequiredMixin, TemplateView):
         context["form"] = HydrometriaForm()
         return context
     
-
-class ImportView(LoginRequiredMixin, View):
-    def post(self, request):
-        try:
-            file_obj = request.FILES['files']
-            df = pd.read_excel(file_obj, engine='openpyxl', header=None, index_col=None)
-            df = df.fillna('') 
-            data_to_display = df.to_json(orient='records')
-            
-            return JsonResponse({'status': 'success', 'data': data_to_display})
-        
-        except Exception as e:
-            return JsonResponse({'status': 'failed', 'error_message': str(e)})
+    
+class HydrometriaShowView(LoginRequiredMixin, TemplateView):
+    template_name = os.path.join(TEMPLATE_DIR, 'show/ground_water_level.html')

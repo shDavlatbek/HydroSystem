@@ -65,17 +65,17 @@
           <div class="card-body" style='display: flex;flex-direction: column;'>
   
             <div class="row mt-3 mb-3">
-              <label for="station" class="col-sm-6 col-form-label">Ekspeditsiyalar nomi</label>
+              <label for="station" class="col-sm-6 col-form-label">Gidropost nomi</label>
               <div class="col-sm-6 d-flex align-items-center">
-                <select class="form-control station_select" id="station">
+                <select class="form-control hydropost_select" id="station">
                 </select>
               </div>
             </div>
   
             <div class="row mb-3">
-              <label for="id_well" class="col-sm-6 col-form-label">Kuzatuv-burg'u qudug'i raqami</label>
+              <label for="id_mode" class="col-sm-6 col-form-label">Rejim turi</label>
               <div class="col-sm-6 d-flex align-items-center">
-                <select class="form-control well_select" id="id_well" name='well' required>
+                <select class="form-control mode_select" id="id_mode" required>
                 </select>
               </div>
             </div>
@@ -251,6 +251,7 @@
 {% include "components/loading_modal.html" %}
 {% include "components/modals.html" with modal='fullscreenmodal' %}
 {% include "components/modals.html" with modal='imagedownloadmodal' %}
-<script src="{% static 'app/assets/js/hydromelioratical-water-level-show.js' %}"></script>
+<script src="{% static 'app/assets/js/helpers.js' %}"></script>
+<script src="{% static 'app/assets/js/gidro-levels-show.js' %}"></script>
 
 {% endblock scripts %}
