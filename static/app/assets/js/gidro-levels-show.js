@@ -173,12 +173,14 @@ $(document).ready(function () {
 
   $("#filter-button").on("click", function () {
     var modeId = modeSelect.val();
-    if (modeId) {
+    var hydropostID = hydropostSelect.val();
+    if (modeId && hydropostID) {
       $.ajax({
-        url: "/hydromelioratical/show/water-level/",
+        url: "/hydrometeorological/show/hydropost-levels/",
         method: "POST",
         data: {
-          well_id: modeId,
+          hydropost_id: hydropostID,
+          mode_id: modeId,
           start_year: $("#start_year").val(),
           end_year: $("#end_year").val(),
           start_month: $("#start_month").val(),
@@ -216,6 +218,9 @@ $(document).ready(function () {
     var myModal = new bootstrap.Modal(document.getElementById('fullscreenModal'));
     myModal.show();
   });
+  $("#fullscreenModal").on("hidden.bs.modal", function () {
+    $(this).find(".modal-body").empty();
+  });
 
   $('#heatmap').on('click', function(){
     $.ajax({
@@ -247,11 +252,12 @@ $(document).ready(function () {
   $('#graphOneYear').on('click', function(){
     $.ajax({
       type: 'POST',
-      url: '/hydromelioratical/show/water-level/one-year',  // Replace with your actual URL
+      url: '/hydrometeorological/show/hydropost-levels/one-year',  // Replace with your actual URL
       data: {
         data:localStorage.getItem('filteredData'),
         year:$('#oneyear').val(),
-        well_id:modeSelect.val()
+        hydropost_id: hydropostSelect.val(),
+        mode_id: modeSelect.val()
       },
       xhrFields: {
         responseType: 'blob'  // This is crucial for handling binary data
@@ -281,12 +287,13 @@ $(document).ready(function () {
   $('#graphCompare').on('click', function(){
     $.ajax({
       type: 'POST',
-      url: '/hydromelioratical/show/water-level/compare-year',  // Replace with your actual URL
+      url: '/hydrometeorological/show/hydropost-levels/compare-year',  // Replace with your actual URL
       data: {
         data:localStorage.getItem('filteredData'),
         year:$('#oneyear').val(),
         compare_year:$('#secondyear').val(),
-        well_id:modeSelect.val()
+        hydropost_id: hydropostSelect.val(),
+        mode_id: modeSelect.val()
       },
       xhrFields: {
         responseType: 'blob'  // This is crucial for handling binary data

@@ -7,11 +7,11 @@ from django.apps import apps
 from pymannkendall import original_test as mk_test
 
 # Helper function to fetch data from a model based on dynamic filtering
-def fetch_data(app_name, model_name, filter_field, filter_value):
+def fetch_data(app_name, model_name, **filters):
     model = apps.get_model(app_label=app_name, model_name=model_name)
-    filter_kwargs = {f"{filter_field}": filter_value}
+
     
-    data = model.objects.filter(**filter_kwargs).values(
+    data = model.objects.filter(**filters).values(
         'year', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'
     )
     
@@ -76,8 +76,8 @@ def calculate_statistics(df):
     return stats, mk_results, cv
 
 # Main function to process request and return data
-def process_request(app_name, model_name, filter_field, filter_value, start_year=None, end_year=None, start_month=1, end_month=12):
-    df, error = fetch_data(app_name, model_name, filter_field, filter_value)
+def process_request(app_name, model_name, start_year=None, end_year=None, start_month:int=1, end_month=12, **filters):
+    df, error = fetch_data(app_name, model_name, **filters)
     if error:
         return error
 

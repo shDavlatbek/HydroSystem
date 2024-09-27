@@ -8,6 +8,8 @@ urlpatterns = [
     path('hydrometria/', views.HydrometriaView.as_view(), name='hydrometria'),
     path('meteorology/', views.MeteorologyView.as_view(), name='meteorology'),
     path('show/hydropost-levels/', views.HydrometriaShowView.as_view(), name='hydropost-show'),
+    path('show/hydropost-levels/one-year', views.GraphOneYear.as_view(), name='hydropost-one-year'),
+    path('show/hydropost-levels/compare-year', views.GraphCompareTwoYears.as_view(), name='hydropost-compare-year'),
 ] + \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

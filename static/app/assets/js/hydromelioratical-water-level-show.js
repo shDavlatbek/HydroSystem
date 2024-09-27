@@ -243,6 +243,9 @@ $(document).ready(function () {
     var myModal = new bootstrap.Modal(document.getElementById('fullscreenModal'));
     myModal.show();
   });
+  $("#fullscreenModal").on("hidden.bs.modal", function () {
+    $(this).find(".modal-body").empty();
+  });
 
   $('#heatmap').on('click', function(){
     $.ajax({

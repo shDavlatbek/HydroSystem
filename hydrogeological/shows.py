@@ -52,7 +52,7 @@ class GroundWaterLevelView( TemplateView):
         try: well_id = int(well_id)
         except: return JsonResponse({'status': 'error', 'message': 'Invalid well ID'})
 
-        res = process_request('hydrogeological', "WaterLevel", 'well__id', well_id, start_year, end_year, start_month, end_month)
+        res = process_request('hydrogeological', "WaterLevel", start_year, end_year, start_month, end_month, well__id=well_id)
         
         return JsonResponse({
             **res
