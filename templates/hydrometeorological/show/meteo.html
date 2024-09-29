@@ -65,7 +65,7 @@
           <div class="card-body" style='display: flex;flex-direction: column;'>
   
             <div class="row mt-3 mb-3">
-              <label for="meteostation" class="col-sm-6 col-form-label">Gidropost nomi</label>
+              <label for="meteostation" class="col-sm-6 col-form-label">Meteologik stansiya</label>
               <div class="col-sm-6 d-flex align-items-center">
                 <select class="form-control meteostation_select" id="meteostation">
                 </select>
@@ -140,7 +140,7 @@
 
         <div class="card rounded-2 h-100 mb-0 overflow-hidden">
           <div class="card-body">
-              <div class="row my-3 text-center blue"><h1>Gidropost Hususiyatlari</h1></div>
+              <div class="row my-3 text-center blue"><h1>Meteologik stansiya ma'lumotlari</h1></div>
               <div class="row">
                 <div class="col-lg-4">
                   <div class="row mb-3">
@@ -252,6 +252,6 @@
 {% include "components/modals.html" with modal='fullscreenmodal' %}
 {% include "components/modals.html" with modal='imagedownloadmodal' %}
 <script src="{% static 'app/assets/js/helpers.js' %}"></script>
-<script src="{% static 'app/assets/js/gidro-levels-show.js' %}"></script>
+<script src="{% static 'app/assets/js/meteo-levels-show.js' %}"></script>
 
 {% endblock scripts %}

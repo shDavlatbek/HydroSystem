@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import pandas as pd
 from hydrogeological.models import Well as HGWell
 from hydromelioratical.models import Well as HMWell
-from hydrometeorological.models import Hydropost, Meteostation, Mode
+from hydrometeorological.models import Hydropost, Meteostation, Mode, Parameter
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
@@ -57,3 +57,13 @@ class HydropostView(View):
 class HydropostModeView(View):
     def get(self, request):
         return JsonResponse({'status': True, 'mode':[{"id": mode.id, "name": mode.name} for mode in Mode.objects.all()]})
+
+
+class MeteostationView(View):
+    def get(self, request):
+        return JsonResponse({'status': True, 'meteostation':[{"id": meteostation.id, "name": meteostation.name} for meteostation in Meteostation.objects.all()]})
+    
+
+class MeteostationParameterView(View):
+    def get(self, request):
+        return JsonResponse({'status': True, 'parameter':[{"id": parameter.id, "name": parameter.name} for parameter in Parameter.objects.all()]})
