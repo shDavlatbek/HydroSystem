@@ -12,6 +12,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('hydropost/', HydropostView.as_view(), name='hydropost'),
     path('hydropost-mode/', HydropostModeView.as_view(), name='hydropost-mode'),
+    path("meteostation/", MeteostationView.as_view(), name="meteostation"),
+    path("meteostation-parameter/", MeteostationParameterView.as_view(), name="meteostation-parameter"),
     path("import/", ImportView.as_view(), name="import")
 ] + \
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
