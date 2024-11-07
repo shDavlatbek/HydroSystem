@@ -1,7 +1,7 @@
 pandas
 openpyxl
 pymannkendall
-django
+django==5.0.0
 matplotlib
 seaborn
 django-jazzmin
